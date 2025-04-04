@@ -1,5 +1,6 @@
 # PACF交互式演示
 
+```{raw} html
 <div class="container">
     <div id="pyodide-loading">
         正在加载Python环境，请稍候...
@@ -17,6 +18,7 @@
         <h3>计算结果比较</h3>
     </div>
 </div>
+```
 
 ## 项目说明
 
