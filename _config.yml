@@ -14,7 +14,7 @@ sphinx:
 
 # Repository settings
 repository:
-  url: https://github.com/yourusername/pacf-demo
+  url: https://github.com/sztfayt/pacf-demo
   branch: main
 
 # Bibliography
