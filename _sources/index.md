@@ -1,31 +1,72 @@
-# 偏自相关系数(PACF)的交互式演示
+# PACF交互式演示
 
-欢迎使用偏自相关系数(PACF)的交互式演示工具！这个工具旨在帮助您理解AR(3)模型中偏自相关系数的计算方法，并与自相关系数(ACF)进行对比。
+<div class="container">
+    <div id="pyodide-loading">
+        正在加载Python环境，请稍候...
+    </div>
+    
+    <div id="controls-container" class="controls">
+        <h3>AR(3)模型参数设置</h3>
+    </div>
+    
+    <div id="plots-container" class="plots">
+        <h3>结果展示</h3>
+    </div>
+    
+    <div id="comparison-container" class="comparison">
+        <h3>计算结果比较</h3>
+    </div>
+</div>
 
-## 什么是偏自相关系数？
+## 项目说明
 
-偏自相关系数(Partial Autocorrelation Function, PACF)是时间序列分析中的一个重要概念，它衡量的是在控制中间滞后项的影响后，当前值与某一滞后值之间的相关性。
+这个项目提供了一个交互式网页，用于展示AR(3)模型中偏自相关系数(PACF)的计算过程，并与自相关系数(ACF)进行对比。
 
-与自相关系数(ACF)不同，PACF能够更准确地识别AR模型的阶数。在AR(p)模型中，PACF在滞后p阶后会出现截断现象，而ACF则会呈现逐渐衰减的趋势。
+## 功能特点
 
-## 如何使用这个演示工具
+- 用户可以自行输入AR(3)模型的系数
+- 展示滞后1、2、3阶的偏自相关系数计算过程
+- 通过散点图直观展示PACF与ACF的区别
+- 将手动计算的PACF与Python自带的statsmodels计算结果进行对比
+- 完全在浏览器中运行，无需服务器支持
 
-1. 使用滑块调整AR(3)模型的系数(φ₁, φ₂, φ₃)和序列长度
-2. 点击"更新图表"按钮生成新的时间序列和相关系数
-3. 观察散点图中PACF与ACF的区别
-4. 查看比较表格，了解手动计算的PACF与statsmodels计算结果的差异
+## 使用说明
 
-## 教学应用
+1. 使用滑块调整AR(3)模型的参数：
+   - φ₁：第一阶系数
+   - φ₂：第二阶系数
+   - φ₃：第三阶系数
+   - n：序列长度
 
-这个交互式演示可以帮助学生理解：
+2. 点击"更新图表"按钮查看结果：
+   - 左侧图表显示自相关系数(ACF)
+   - 右侧图表显示偏自相关系数(PACF)
+   - 下方表格比较手动计算结果和statsmodels计算结果
 
-- AR模型的基本原理
-- 自相关系数(ACF)与偏自相关系数(PACF)的区别
-- PACF在AR模型阶数识别中的应用
-- 手动计算PACF的方法
+## 技术实现
 
-## 开始使用
+本项目使用以下技术：
 
-点击下面的链接进入交互式演示：
+- [Jupyter Book](https://jupyterbook.org)：将Jupyter Notebook转换为静态网页
+- [Pyodide](https://pyodide.org)：在浏览器中运行Python代码
+- [ipywidgets](https://ipywidgets.readthedocs.io)：创建交互式控件
+- [Matplotlib](https://matplotlib.org)：绘制图表
+- [NumPy](https://numpy.org)和[Pandas](https://pandas.pydata.org)：数据处理
 
-[进入交互式演示](notebooks/pacf_interactive.html) 
+## 本地运行
+
+1. 安装Jupyter Book:
+```bash
+pip install jupyter-book
+```
+
+2. 克隆本仓库:
+```bash
+git clone https://github.com/sztfayt/pacf-demo.git
+cd pacf-demo
+```
+
+3. 构建静态网站:
+```bash
+jupyter-book build .
+``` 
