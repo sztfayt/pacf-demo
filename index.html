@@ -321,11 +321,15 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">项目说明</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">功能特点</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">使用说明</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">技术实现</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">本地运行</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">项目说明</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">功能特点</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">使用说明</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">技术实现</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">本地运行</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">技术实现</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">本地运行</a></li>
 </ul>
             </nav>
         </div>
@@ -339,58 +343,70 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="pacf">
 <h1>PACF交互式演示<a class="headerlink" href="#pacf" title="Permalink to this heading">#</a></h1>
-<div class="container">
-    <div id="pyodide-loading">
-        正在加载Python环境，请稍候...
-    </div>
-    
-    <div id="controls-container" class="controls">
-        <h3>AR(3)模型参数设置</h3>
-    </div>
-    
-    <div id="plots-container" class="plots">
-        <h3>结果展示</h3>
-    </div>
-    
-    <div id="comparison-container" class="comparison">
-        <h3>计算结果比较</h3>
-    </div>
-</div><section id="id1">
+<div id="pyodide-loading">
+    正在加载Pyodide和必要的Python包，请稍候...
+</div>
+<div id="controls-container">
+</div>
+<div id="plots-container">
+</div>
+<div id="results-container">
+    <h3>计算结果对比</h3>
+    <table id="results-table">
+        <thead>
+            <tr>
+                <th>滞后阶数</th>
+                <th>ACF</th>
+                <th>PACF</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+<section id="id1">
 <h2>项目说明<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
-<p>这个项目提供了一个交互式网页，用于展示AR(3)模型中偏自相关系数(PACF)的计算过程，并与自相关系数(ACF)进行对比。</p>
-</section>
+<p>这是一个交互式的偏自相关函数(PACF)演示项目。通过调整AR(3)模型的参数，您可以直观地观察到自相关函数(ACF)和偏自相关函数(PACF)的变化。</p>
 <section id="id2">
-<h2>功能特点<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
-<ul class="simple">
-<li><p>用户可以自行输入AR(3)模型的系数</p></li>
-<li><p>展示滞后1、2、3阶的偏自相关系数计算过程</p></li>
-<li><p>通过散点图直观展示PACF与ACF的区别</p></li>
-<li><p>将手动计算的PACF与Python自带的statsmodels计算结果进行对比</p></li>
-<li><p>完全在浏览器中运行，无需服务器支持</p></li>
-</ul>
+<h3>功能特点<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>可调节AR(3)模型的三个参数：φ₁、φ₂、φ₃</p></li>
+<li><p>可设置时间序列的长度</p></li>
+<li><p>实时显示ACF和PACF的散点图</p></li>
+<li><p>提供计算结果的对比表格</p></li>
+</ol>
 </section>
 <section id="id3">
-<h2>使用说明<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
+<h3>使用说明<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
 <ol class="arabic simple">
-<li><p>使用滑块调整AR(3)模型的参数：</p>
-<ul class="simple">
-<li><p>φ₁：第一阶系数</p></li>
-<li><p>φ₂：第二阶系数</p></li>
-<li><p>φ₃：第三阶系数</p></li>
-<li><p>n：序列长度</p></li>
-</ul>
-</li>
-<li><p>点击”更新图表”按钮查看结果：</p>
-<ul class="simple">
-<li><p>左侧图表显示自相关系数(ACF)</p></li>
-<li><p>右侧图表显示偏自相关系数(PACF)</p></li>
-<li><p>下方表格比较手动计算结果和statsmodels计算结果</p></li>
-</ul>
-</li>
+<li><p>使用滑块调整AR(3)模型的参数</p></li>
+<li><p>设置时间序列的长度</p></li>
+<li><p>点击”更新图表”按钮查看结果</p></li>
+<li><p>观察ACF和PACF的变化</p></li>
 </ol>
 </section>
 <section id="id4">
-<h2>技术实现<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h2>
+<h3>技术实现<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
+<p>本项目使用以下技术：</p>
+<ul class="simple">
+<li><p>Pyodide：在浏览器中运行Python代码</p></li>
+<li><p>NumPy：进行数值计算</p></li>
+<li><p>Matplotlib：绘制图表</p></li>
+<li><p>Scikit-learn：进行线性回归计算</p></li>
+</ul>
+</section>
+<section id="id5">
+<h3>本地运行<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>克隆项目仓库</p></li>
+<li><p>安装依赖：<code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-r</span> <span class="pre">requirements.txt</span></code></p></li>
+<li><p>运行Jupyter Book：<code class="docutils literal notranslate"><span class="pre">jupyter-book</span> <span class="pre">build</span> <span class="pre">.</span></code></p></li>
+<li><p>在浏览器中打开<code class="docutils literal notranslate"><span class="pre">_build/html/index.html</span></code></p></li>
+</ol>
+</section>
+</section>
+<section id="id6">
+<h2>技术实现<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h2>
 <p>本项目使用以下技术：</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://jupyterbook.org">Jupyter Book</a>：将Jupyter Notebook转换为静态网页</p></li>
@@ -400,8 +416,8 @@ document.write(`
 <li><p><a class="reference external" href="https://numpy.org">NumPy</a>和<a class="reference external" href="https://pandas.pydata.org">Pandas</a>：数据处理</p></li>
 </ul>
 </section>
-<section id="id5">
-<h2>本地运行<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h2>
+<section id="id7">
+<h2>本地运行<a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p>安装Jupyter Book:</p></li>
 </ol>
@@ -480,11 +496,15 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">项目说明</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">功能特点</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">使用说明</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">技术实现</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">本地运行</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">项目说明</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">功能特点</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">使用说明</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">技术实现</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">本地运行</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">技术实现</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">本地运行</a></li>
 </ul>
   </nav></div>
 
