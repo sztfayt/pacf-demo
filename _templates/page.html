@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            {{ super() }}
+        </div>
+    </div>
+
+    <!-- 交互式组件容器 -->
+    <div id="interactive-container" style="display: none;">
+        <div id="controls-container"></div>
+        <div id="plots-container"></div>
+        <div id="comparison-container"></div>
+    </div>
+
+    <!-- Pyodide加载指示器 -->
+    <div id="pyodide-loading" style="text-align: center; padding: 20px;">
+        <div class="spinner-border text-primary" role="status">
+            <span class="sr-only">加载中...</span>
+        </div>
+        <p>正在加载Pyodide，请稍候...</p>
+    </div>
+</div>
+
+<script>
+    // 检测当前页面是否包含交互式Notebook
+    document.addEventListener('DOMContentLoaded', function () {
+        const notebookContent = document.querySelector('.jp-Notebook');
+        if (notebookContent) {
+            // 如果存在Notebook内容，显示交互式组件
+            document.getElementById('interactive-container').style.display = 'block';
+            document.getElementById('pyodide-loading').style.display = 'none';
+        } else {
+            // 如果不是Notebook页面，隐藏交互式组件
+            document.getElementById('interactive-container').style.display = 'none';
+            document.getElementById('pyodide-loading').style.display = 'none';
+        }
+    });
+</script>
+{% endblock %}

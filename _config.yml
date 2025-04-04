@@ -1,0 +1,26 @@
+# Book settings
+title: PACF交互式演示
+author: 时间序列教学
+logo: logo.png
+
+# Build settings
+sphinx:
+  config:
+    html_js_files:
+      - https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js
+      - custom.js
+    html_css_files:
+      - custom.css
+
+# Repository settings
+repository:
+  url: https://github.com/yourusername/pacf-demo
+  branch: main
+
+# Bibliography
+bibtex_bibfiles:
+  - references.bib
+
+# Add Pyodide initialization
+html_js_files:
+  - custom.js 
